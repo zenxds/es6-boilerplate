@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const moment = require('moment')
 
 const config = {
@@ -26,9 +27,7 @@ const config = {
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-          use: [
-            'file-loader'
-          ]
+          use: 'url-loader?limit=10000'
         },
         {
           test: /\.(png|jpg|gif)$/,
@@ -61,7 +60,8 @@ const config = {
     plugins: [
       new HtmlWebpackPlugin({
         template: 'template/index.html'
-      }),      
+      }),
+      new webpack.NoEmitOnErrorsPlugin(),            
       new webpack.HotModuleReplacementPlugin(),      
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('dev')
@@ -125,6 +125,7 @@ const config = {
       ]
     },
     plugins: [
+      new WebpackCleanupPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('prod')
       }),
@@ -133,6 +134,7 @@ const config = {
         allChunks: true,
         filename: '[name].css'
       }),
+      new webpack.optimize.OccurrenceOrderPlugin(),      
       new webpack.optimize.UglifyJsPlugin({
         output: {
           ascii_only: true,
