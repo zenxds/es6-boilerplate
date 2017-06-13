@@ -84,7 +84,7 @@ const config = {
           exclude: /node_modules/
         },
         {
-          test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+          test: /\.(woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=\.]+)?$/,
           use: [
             'file-loader'
           ]
