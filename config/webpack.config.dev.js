@@ -9,10 +9,10 @@ module.exports = {
   entry: './index.js',
   output: {
     path: buildDir,
-    publicPath: publicPath,
+    publicPath,
     filename: 'main.js'
   },
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -70,8 +70,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template/index.html'
     }),
-    new webpack.NoEmitOnErrorsPlugin(),            
-    new webpack.HotModuleReplacementPlugin(),      
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('dev')
     })
@@ -79,8 +79,8 @@ module.exports = {
   devServer: {
     hot: true,
     contentBase: buildDir,
-    publicPath: publicPath,
-    host: "0.0.0.0",
+    publicPath,
+    host: '0.0.0.0',
     disableHostCheck: true
   }
 }

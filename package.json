@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-dev-server -w --open --env=dev",
-    "build": "webpack --env=prod"
+    "build": "webpack --env=prod",
+    "test": "ava"
   },
   "author": {},
   "publishConfig": {},
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
+    "ava": "^0.19.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.5.1",
