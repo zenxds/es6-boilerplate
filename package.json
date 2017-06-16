@@ -4,7 +4,7 @@
   "description": "es6-boilerplate",
   "main": "build/index.js",
   "scripts": {
-    "start": "webpack-dev-server -w --open --env=dev",
+    "start": "webpack-dashboard -- webpack-dev-server -w --open --env=dev",
     "build": "webpack --env=prod",
     "test": "ava"
   },
@@ -39,6 +39,7 @@
     "url-loader": "^0.5.9",
     "webpack": "^2.6.1",
     "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^2.4.5"
   }
 }

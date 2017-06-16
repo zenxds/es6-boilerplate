@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const buildDir = path.join(__dirname, '../build')
 const publicPath = '/'
@@ -70,6 +71,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template/index.html'
     }),
+    new DashboardPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
