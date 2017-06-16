@@ -4,6 +4,7 @@ module.exports = {
     "import"
   ],
   "rules": {
+    "no-unused-vars": "off",
     "no-console": "off",
     // 行尾必须加分号
     "semi": "off",

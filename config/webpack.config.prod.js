@@ -5,18 +5,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const moment = require('moment')
 
-const buildDir = path.join(__dirname, '../build')
-const publicPath = '/'
-
 module.exports = {
   entry: './index.js',
   output: {
-    path: buildDir,
-    publicPath: publicPath,
+    publicPath: '/',
+    path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.jsx?$/,
         loader: ['es3ify-loader', 'babel-loader'],
         exclude: /node_modules/

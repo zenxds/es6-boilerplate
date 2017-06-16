@@ -3,14 +3,11 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
-const buildDir = path.join(__dirname, '../build')
-const publicPath = '/'
-
 module.exports = {
   entry: './index.js',
   output: {
-    path: buildDir,
-    publicPath,
+    publicPath: '/',
+    path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
   devtool: 'inline-source-map',
@@ -79,9 +76,8 @@ module.exports = {
     })
   ],
   devServer: {
+    publicPath: '/',
     hot: true,
-    contentBase: buildDir,
-    publicPath,
     host: '0.0.0.0',
     disableHostCheck: true
   }
