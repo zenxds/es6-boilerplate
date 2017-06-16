@@ -17,7 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: ['es3ify-loader', 'babel-loader'],
+        loader: ['es3ify-loader', 'babel-loader', 'eslint-loader'],
         exclude: /node_modules/
       },
       {
