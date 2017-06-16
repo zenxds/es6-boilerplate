@@ -8,7 +8,9 @@
     "build": "webpack --env=prod",
     "test": "ava"
   },
-  "author": {},
+  "author": {
+    "name": ""
+  },
   "publishConfig": {},
   "repository": {
     "type": "git",
