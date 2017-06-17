@@ -6,7 +6,7 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const moment = require('moment')
 
 module.exports = {
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
     publicPath: '/',
     path: path.join(__dirname, '../build'),
