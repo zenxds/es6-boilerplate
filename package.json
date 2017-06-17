@@ -2,7 +2,7 @@
   "name": "es6-boilerplate",
   "version": "0.1.0",
   "description": "es6-boilerplate",
-  "main": "build/index.js",
+  "main": "build/main.js",
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server -w --open --env=dev",
     "build": "webpack --env=prod",
