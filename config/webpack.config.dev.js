@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
+const rules = require('./webpack.rules')
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -12,19 +13,11 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   module: {
-    rules: [
+    rules: rules.concat([
       {
         test: /\.jsx?$/,
         loader: ['es3ify-loader', 'babel-loader', 'eslint-loader'],
         exclude: /node_modules/
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        use: 'url-loader?limit=10000'
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: 'url-loader?limit=8192&name=image/[hash].[ext]'
       },
       {
         test: /\.css$/,
@@ -62,7 +55,7 @@ module.exports = {
           }
         ]
       }
-    ]
+    ])
   },
   plugins: [
     new HtmlWebpackPlugin({

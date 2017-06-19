@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const moment = require('moment')
 
+const rules = require('./webpack.rules')
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -13,19 +14,11 @@ module.exports = {
     filename: 'main.js'
   },
   module: {
-    rules: [
+    rules: rules.concat([
       {
         test: /\.jsx?$/,
         loader: ['es3ify-loader', 'babel-loader'],
         exclude: /node_modules/
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=\.]+)?$/,
-        use: 'url-loader?limit=10000'
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: 'url-loader?limit=8192&name=image/[hash].[ext]'
       },
       {
         test: /\.css$/,
@@ -71,7 +64,7 @@ module.exports = {
           }
         ])
       }
-    ]
+    ])
   },
   plugins: [
     new WebpackCleanupPlugin(),
