@@ -4,8 +4,8 @@
   "description": "es6-boilerplate",
   "main": "build/main.js",
   "scripts": {
-    "start": "webpack-dashboard -- webpack-dev-server -w --open --env=dev",
-    "build": "webpack --env=prod",
+    "start": "BABEL_ENV=dev webpack-dashboard -- webpack-dev-server -w --open --env=dev",
+    "build": "BABEL_ENV=prod webpack --env=prod",
     "test": "ava"
   },
   "author": {
