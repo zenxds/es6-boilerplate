@@ -43,8 +43,6 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "eslint-plugin-react": "^7.1.0",
-    "generator-ctu": "^0.1.5",
     "normalize.css": "^7.0.0"
   }
 }
