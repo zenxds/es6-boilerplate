@@ -10,7 +10,6 @@ const rules = require('./webpack.rules')
 module.exports = {
   entry: './src/index.js',
   output: {
-    // publicPath: '/',
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
@@ -77,7 +76,7 @@ module.exports = {
   plugins: [
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('prod')
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new ExtractTextPlugin({
       disable: false,
