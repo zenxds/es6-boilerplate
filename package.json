@@ -23,6 +23,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.4",
+    "dx-mock": "^0.1.0",
     "es3ify-loader": "^0.2.0",
     "eslint": "^4.0.0",
     "eslint-loader": "^1.8.0",

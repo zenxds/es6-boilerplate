@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const dxMock = require('dx-mock')
 
 const rules = require('./webpack.rules')
 module.exports = {
@@ -79,10 +80,7 @@ module.exports = {
     host: '0.0.0.0',
     disableHostCheck: true,
     before(app){
-      app.all('/api/*', function(req, res) {
-        const p = path.join(__dirname, '..', /\.json$/.test(req.path) ? req.path : req.path + '.json')
-        res.json(require(p))
-      })
+      dxMock(app, { root: path.join(__dirname, '../api')})
     }
   }
 }
