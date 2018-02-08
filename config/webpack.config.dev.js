@@ -73,7 +73,6 @@ module.exports = {
   devServer: {
     contentBase: [
       path.join(__dirname, '../build'),
-      path.join(__dirname, '../api'),
       path.join(__dirname, '..')
     ],
     hot: true,
