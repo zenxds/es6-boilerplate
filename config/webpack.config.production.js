@@ -4,21 +4,25 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const moment = require('moment')
 
 const rules = require('./webpack.rules')
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
-  // devtool: 'cheap-module-source-map',
+  optimization: {
+    minimize: false
+  },
   module: {
     rules: rules.concat([
       {
         test: /\.jsx?$/,
-        loader: ['es3ify-loader', 'babel-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/
       },
       {
@@ -77,7 +81,7 @@ module.exports = {
   plugins: [
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+
     }),
     new ExtractTextPlugin({
       disable: false,
@@ -88,21 +92,19 @@ module.exports = {
       template: 'template/index.html',
       hash: true
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        ascii_only: true,
-        quote_keys: true,
-        screw_ie8: false
-      },
-      compress: {
-        warnings: false,
-        drop_console: true,
-        properties: false,
-        screw_ie8: false
-      },
-      mangle: {
-        screw_ie8: false
+    new webpack.NamedModulesPlugin(),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ie8: true,
+        warnings: true,
+        output: {
+          ascii_only: true,
+          quote_keys: true
+        },
+        compress: {
+          drop_console: true,
+          properties: false
+        }
       }
     }),
     new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`)

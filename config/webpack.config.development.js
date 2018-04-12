@@ -5,6 +5,7 @@ const dxMock = require('dx-mock')
 
 const rules = require('./webpack.rules')
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../build'),
@@ -15,7 +16,7 @@ module.exports = {
     rules: rules.concat([
       {
         test: /\.jsx?$/,
-        loader: ['es3ify-loader', 'babel-loader', 'eslint-loader'],
+        use: ['babel-loader', 'eslint-loader'],
         exclude: /node_modules/
       },
       {
@@ -64,10 +65,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template/index.html'
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('dev')
     })
   ],
   devServer: {
