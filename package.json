@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "es6-boilerplate",
   "main": "build/main.js",
-  "sideEffects": true,
   "scripts": {
     "start": "BABEL_ENV=development webpack-dev-server -w --open --env=development",
     "build": "BABEL_ENV=production webpack --env=production",
