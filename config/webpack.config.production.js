@@ -90,7 +90,6 @@ module.exports = {
       template: 'template/index.html',
       hash: true
     }),
-    new webpack.NamedModulesPlugin(),
     new UglifyJsPlugin({
       uglifyOptions: {
         ie8: true,

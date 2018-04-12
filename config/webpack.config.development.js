@@ -63,7 +63,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template/index.html'
     }),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
     })
