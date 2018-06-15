@@ -1,7 +1,7 @@
 // https://www.maizhiying.me/posts/2017/03/01/webpack-babel-ie8-support.html
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -27,7 +27,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -42,11 +43,12 @@ module.exports = {
               }
             }
           }
-        ])
+        ]
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -65,7 +67,7 @@ module.exports = {
             loader: 'less-loader',
             options: {}
           }
-        ])
+        ]
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -114,9 +116,8 @@ module.exports = {
     new webpack.DefinePlugin({
 
     }),
-    new ExtractTextPlugin({
-      disable: false,
-      allChunks: true,
+    new MiniCssExtractPlugin({
+      chunkFilename: '[id].css',
       filename: '[name].css'
     }),
     new HtmlWebpackPlugin({
