@@ -2,4 +2,4 @@
 
 ## 说明
 
-jest暂时还不支持`@babel/babel-core`, 需要安装`babel-core@^7.0.0-0`
+jest暂时还不支持`@babel/core`, 需要安装`babel-core@^7.0.0-0`
