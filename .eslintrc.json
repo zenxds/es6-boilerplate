@@ -2,16 +2,24 @@
   "extends": "eslint:recommended",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 6
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "plugins": [
     "import"
   ],
+  "globals": {
+    "API_SERVER": true
+  },
   "rules": {
     "no-unused-vars": 0,
     "no-console": 0,
