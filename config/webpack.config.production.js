@@ -41,7 +41,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: ['babel-loader'],
-        exclude: /node_modules/
+        exclude: p => {
+          if (/dx-lib/.test(p)) {
+            return false
+          }
+
+          return /node_modules/.test(p)
+        }
       },
       {
         test: /\.css$/,

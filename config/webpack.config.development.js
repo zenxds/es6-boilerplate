@@ -17,7 +17,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: ['babel-loader', 'eslint-loader'],
-        exclude: /node_modules/
+        exclude: p => {
+          if (/dx-lib/.test(p)) {
+            return false
+          }
+
+          return /node_modules/.test(p)
+        }
       },
       {
         test: /\.css$/,
