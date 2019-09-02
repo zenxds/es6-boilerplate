@@ -1,11 +1,7 @@
 module.exports = {
-  "extends": "eslint:recommended",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 7,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+    "project": "tsconfig.json"
   },
   "env": {
     "browser": true,
@@ -13,54 +9,26 @@ module.exports = {
     "es6": true,
     "jest": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
   "plugins": [
-    "import"
+    "@typescript-eslint"
   ],
   "globals": {
-    "API_SERVER": true
+    "API_SERVER": true,
+    __webpack_public_path__: true
   },
   "rules": {
-    "indent": [
-      "error",
+    "@typescript-eslint/indent": [
+      "warn",
       2
     ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "warn",
-      "single"
-    ],
-    "no-unused-vars": [
-      "warn"
-    ],
-    "no-console": [
-      "error",
-      {
-        "allow": [
-          "log",
-          "warn",
-          "error"
-        ]
-      }
-    ],
-    "no-empty": [
-      "error",
-      {
-        "allowEmptyCatch": true
-      }
-    ],
-    "semi": [
-      "error",
-      "never"
-    ],
-    "eol-last": [
-      "warn"
-    ],
-    "comma-dangle": [
-      "error",
-      "never"
-    ]
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off"
   }
 }

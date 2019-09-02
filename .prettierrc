@@ -1,5 +1,5 @@
 {
-  "parser": "babylon",
+  "parser": "typescript",
   "useTabs": false,
   "tabWidth": 2,
   "semi": false,

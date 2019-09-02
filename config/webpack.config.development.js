@@ -6,16 +6,20 @@ const dxMock = require('dx-mock')
 const rules = require('./webpack.rules')
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
   devtool: 'cheap-module-eval-source-map',
+  resolve: {
+    extensions: ['.js', '.ts', '.json'],
+    modules: ['node_modules', 'src']
+  },
   module: {
     rules: rules.concat([
       {
-        test: /\.jsx?$/,
+        test: /\.(js|ts)$/,
         use: ['babel-loader', 'eslint-loader'],
         exclude: p => {
           if (/dx-lib/.test(p)) {

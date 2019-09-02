@@ -11,7 +11,7 @@ const moment = require('moment')
 const rules = require('./webpack.rules')
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
@@ -39,7 +39,7 @@ module.exports = {
   module: {
     rules: rules.concat([
       {
-        test: /\.jsx?$/,
+        test: /\.(js|ts)$/,
         use: ['babel-loader'],
         exclude: p => {
           if (/dx-lib/.test(p)) {
