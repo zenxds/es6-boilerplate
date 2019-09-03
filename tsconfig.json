@@ -19,7 +19,6 @@
       "helpers/*": ["./src/helpers/*"]
     }
   },
-  "files": [],
   "include": [
     "./src/**/*.ts"
   ],
