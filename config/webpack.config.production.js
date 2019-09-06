@@ -16,6 +16,10 @@ module.exports = {
     path: path.join(__dirname, '../build'),
     filename: 'main.js'
   },
+  resolve: {
+    extensions: ['.js', '.ts', '.json'],
+    modules: ['node_modules', 'src']
+  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -41,13 +45,7 @@ module.exports = {
       {
         test: /\.(js|ts)$/,
         use: ['babel-loader'],
-        exclude: p => {
-          if (/dx-lib/.test(p)) {
-            return false
-          }
-
-          return /node_modules/.test(p)
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,

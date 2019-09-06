@@ -21,13 +21,7 @@ module.exports = {
       {
         test: /\.(js|ts)$/,
         use: ['babel-loader', 'eslint-loader'],
-        exclude: p => {
-          if (/dx-lib/.test(p)) {
-            return false
-          }
-
-          return /node_modules/.test(p)
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
