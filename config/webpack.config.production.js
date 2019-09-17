@@ -1,16 +1,14 @@
 // https://www.maizhiying.me/posts/2017/03/01/webpack-babel-ie8-support.html
 const path = require('path')
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const moment = require('moment')
 
 const rules = require('./webpack.rules')
 module.exports = {
-  mode: 'production',
   entry: './src/index.ts',
   output: {
     path: path.join(__dirname, '../build'),
@@ -20,37 +18,19 @@ module.exports = {
     extensions: ['.js', '.ts', '.json'],
     modules: ['node_modules', 'src']
   },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          ie8: true,
-          warnings: true,
-          output: {
-            ascii_only: true,
-            quote_keys: true
-          },
-          compress: {
-            drop_console: true,
-            properties: false
-          }
-        }
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-      new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`)
-    ]
-  },
   module: {
     rules: rules.concat([
       {
         test: /\.(js|ts)$/,
-        use: ['babel-loader'],
+        use: [
+          'es3ify-loader',
+          'ts-loader'
+        ],
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
+        use: ExtractTextPlugin.extract([
           {
             loader: 'css-loader',
             options: {
@@ -65,12 +45,11 @@ module.exports = {
               }
             }
           }
-        ]
+        ])
       },
       {
         test: /\.less$/,
-        use: [
-          MiniCssExtractPlugin.loader,
+        use:  ExtractTextPlugin.extract([
           {
             loader: 'css-loader',
             options: {
@@ -89,7 +68,7 @@ module.exports = {
             loader: 'less-loader',
             options: {}
           }
-        ]
+        ])
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -138,9 +117,26 @@ module.exports = {
     new webpack.DefinePlugin({
 
     }),
-    new MiniCssExtractPlugin({
+    new ExtractTextPlugin({
+      disable: false,
+      allChunks: true,
       filename: '[name].css'
     }),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ie8: true,
+        warnings: true,
+        output: {
+          ascii_only: true,
+          quote_keys: true
+        },
+        compress: {
+          drop_console: true,
+          properties: false
+        }
+      }
+    }),
+    new webpack.BannerPlugin(`${moment().format('YYYY-MM-DD HH:mm:ss')}`),
     new HtmlWebpackPlugin({
       template: 'template/index.html',
       hash: true

@@ -4,7 +4,7 @@
     "outDir": "./build",
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2015",
+    "target": "es3",
     "allowJs": true,
     "sourceMap": false,
     "removeComments": true,

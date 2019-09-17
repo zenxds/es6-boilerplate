@@ -5,7 +5,6 @@ const dxMock = require('dx-mock')
 
 const rules = require('./webpack.rules')
 module.exports = {
-  mode: 'development',
   entry: './src/index.ts',
   output: {
     path: path.join(__dirname, '../build'),
@@ -20,7 +19,10 @@ module.exports = {
     rules: rules.concat([
       {
         test: /\.(js|ts)$/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: [
+          'ts-loader',
+          'eslint-loader'
+        ],
         exclude: /node_modules/
       },
       {
